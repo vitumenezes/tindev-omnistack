@@ -1,6 +1,10 @@
 const Dev = require("../models/Dev");
 
 module.exports = {
+
+  /*
+   * Method to store a new dislike
+   */
   async store(req, res) {
     const  { user } =  req.headers;
     const  { devId } =  req.params;
@@ -14,6 +18,7 @@ module.exports = {
 
     loggedDev.dislikes.push(targetDev._id);
 
+    // OBS: always necessary use the save method
     await loggedDev.save();
     
     return res.json(loggedDev);
